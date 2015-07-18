@@ -1,8 +1,8 @@
 # Sirious
 
-Sirious is a linux application that lets you search for any selected content (primary clipboard content) on DuckDuckGo and gives its best result as notification.
+Sirious is a linux application that lets you search for any selected content (primary clipboard content) on DuckDuckGo and gives its best result as a notification.
 Sirious can be given as keyboard shortcut and thus it becomes easier to search content.
-Sirious is under-development.
+Sirious is still under-development.
 
 ###For example
 1. Once installed, Sirious will be a terminal command

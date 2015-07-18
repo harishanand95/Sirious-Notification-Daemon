@@ -7,28 +7,42 @@ import os,sys
 import time
 import bleach
 
-# Clipboard content from Ctrl+C or middle-click or just selection is given for search
+#------- DBus Notification setup
+
+location = os.getcwd()    
+bus = dbus.SessionBus()
+notifications = bus.get_object('org.freedesktop.Notifications', '/org/freedesktop/Notifications')
+interface = dbus.Interface(notifications, 'org.freedesktop.Notifications')
+urllib.urlretrieve("https://raw.githubusercontent.com/harishanand95/Sirious/master/DDG.png", "DDG.png")
+image_location = location + "/DDG.png"
+urllib.urlretrieve("https://raw.githubusercontent.com/harishanand95/Sirious/master/Sirious_icon.png", "Sirious_icon.png")
+icon_location = location + "/Sirious_icon.png"
+dict = {'image-path':icon_location}
+title = "Sirious Notification System"
+#------- Clipboard content from Ctrl+C or middle-click or just selection is given for search
 
 try :
     clipboard_content = subprocess.check_output(["xclip", "-o"])
 except subprocess.CalledProcessError as e:
     returncode = e.returncode
     if returncode != 0 :
-        print "String not found"
+        search_content =  "Clipboard contains no search content"
+        interface.Notify('Sirious',12,icon_location,title,search_content,'',dict,-1)
         exit()
 clipboard_content = clipboard_content.replace("\n","")
 clipboard_content = clipboard_content.replace("  ","")
 clipboard_content = clipboard_content.replace("\""," ")
 
 if clipboard_content == "" or len(clipboard_content) <2 :
-    print "String found is less the typical search length"
+    search_content =  "String found is less the typical search length"
+    interface.Notify('Sirious',12,icon_location,title,search_content,'',dict,-1)
+    exit()
+if clipboard_content.lower() == 'sirious':
+    dict = {'image-path':icon_location}
+    search_content =  ":D Funny! Sirious is a python script that searches primary clipboard content in DuckDuckGo!\nSirious results are provided as notifications.\n Currently Sirious supports GNOME and Ubuntu systems having org.freedesktop.notification.\nIf you find any bug or have any suggestions or modifications you like to add, message or report at https://github.com/harishanand95/Sirious."
+    interface.Notify('Sirious',12,icon_location,title,search_content,'',dict,-1)
     exit()
 
-#------- DBus Notification setup
-    
-bus = dbus.SessionBus()
-notifications = bus.get_object('org.freedesktop.Notifications', '/org/freedesktop/Notifications')
-interface = dbus.Interface(notifications, 'org.freedesktop.Notifications')
 
 #------- DuckDuckGo API --
 
@@ -39,7 +53,7 @@ json_response = response.read()
 #--- No reply from API case
 search_content = "Check Net Connection"
 if json_response == "" :
-    interface.Notify('Sirious',12,"/home/harish/Sirious/Sirious.png",title,search_content,'','',-1)#change
+    interface.Notify('Sirious',12,icon_location,title,search_content,'','',-1)
     exit()
 
 data_unicode = json.loads(json_response)
@@ -47,15 +61,15 @@ scan = "\n"
 scan += data_unicode["AbstractSource"] + "  "
 scan += data_unicode["AbstractURL"]
 url = data_unicode["Image"]
-filename = url.split('/')[-1]#image name
-location = os.getcwd()
-search_content = "Try refining the search term" #searchresult
+filename = url.split('/')[-1] #image name
+
+search_content = "Try refining the search term" #initialised searchresult
 
 #--- Image retrieve and resize
 import PIL
 from PIL import Image
 size = 128, 128
-location = location + "/" + filename
+file_location = location + "/" + filename
 if url != "":
     urllib.urlretrieve(url,filename)
     try:
@@ -64,9 +78,9 @@ if url != "":
         im.save(filename)
     except IOError:
         print "cannot create imageresize for '%s' " % filename
-    dict = {'image-path':location};#change location
+    dict = {'image-path':file_location};#change location
 else:
-    dict = {'image-path':'/home/harish/Sirious/DDG.png'};#change location
+    dict = {'image-path':image_location};#change location
 
 
 #--- Parsing JSON
@@ -86,14 +100,14 @@ if data_unicode["Type"] == 'C' :
     title = "Sirious : " + str(data_unicode["Heading"])
     for item in data_unicode["RelatedTopics"]:
         search_content = item["Text"]
-        interface.Notify('Sirious',12,"/home/harish/Sirious/Sirious_icon.png",title,search_content,'',dict,10000)#change icon image location
+        interface.Notify('Sirious',12,icon_location,title,search_content,'',dict,10000)
     exit()
 
 #--- Display as Notification    
 search_content = search_content + scan + str("\n\n\t\t\t\t-Results from DuckDuckGo")
 title = "Sirious : " + str(data_unicode["Heading"])
-interface.Notify('Sirious',12,"/home/harish/Sirious/Sirious_icon.png",title,search_content,'',dict,10000)#change icon image location)
+interface.Notify('Sirious',12,icon_location,title,search_content,'',dict,10000)
 time.sleep(2)
 #---Remove temporary image file
 if url != "":
-    os.remove(location)
+    os.remove(file_location)

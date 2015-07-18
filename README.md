@@ -4,10 +4,10 @@ Sirious is a linux application that lets you search for any selected content (pr
 Sirious can be given as keyboard shortcut and thus it becomes easier to search content.
 Sirious is still under-development.
 
-###For example
+###How it works! 
 1. Once installed, Sirious will be a terminal command
 2. Give Sirious a keyboard Shortcut in System > Preferences(Settings) > Keyboard > Keyboard Shortcuts say Alt+x
-3. Now Select any text and press Alt+x and you will see a pop notification showing the search result.
+3. Now Select any text and press Alt+x and you will see a popup notification showing the DuckDuckGo search result.
 
 ##Search result types:
   1. If the search term has a wiki page, wiki link and its short summary is provided as notification.

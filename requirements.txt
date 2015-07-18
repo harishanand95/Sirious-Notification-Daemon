@@ -1,0 +1,10 @@
+Manually Install dependencies:
+
+
+Ubuntu based systems
+sudo apt-get install xclip
+sudo apt-get install python-pip
+
+Fedora or RHEL or CentOS 
+sudo yum install xclip
+sudo yum install python-pip

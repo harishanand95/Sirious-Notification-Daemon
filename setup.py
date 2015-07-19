@@ -28,8 +28,8 @@ if __name__ == '__main__':
     install('Pillow')
     subprocess.call(["sudo", "chmod","+x","Sirious"])
     subprocess.call(["sudo", "cp","Sirious","/usr/local/bin/"])
-    print "\033c"
-    print """\nNow Sirious is a command in terminal (its Sirious not sirious) and to create a key binding for this command,
+
+    print """\n\n\n\n\nNow Sirious is a command in terminal (its Sirious not sirious) and to create a key binding for this command,
 \n GNOME:
 \n1. Go to System > Preferences(just Settings) > Keyboard >Keyboard Shortcuts
 \n2. Click the Add button or Custom Shortcuts (a plus sign)

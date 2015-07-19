@@ -21,7 +21,7 @@ Sirious is still under-development.
 From the downloaded directory type
 
 ```python
-python setup.py 
+sudo python setup.py 
 ```
 
 It will ask for sudo password to place Sirious in /usr/bin.

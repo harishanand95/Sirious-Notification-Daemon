@@ -1,6 +1,6 @@
 # Sirious-Notification
 ###UPDATE:
-Currently a better user friendly version is under development.The name of the project will be changed.
+Currently a better user friendly version is under development. The name of the project will be changed.
   1. The newer version will have voice commands
   2. Search feature - clipboard search feature also included
   3. Personal Assistant - community driven entity and intents using supervised ML.  

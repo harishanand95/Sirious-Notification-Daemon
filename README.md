@@ -1,18 +1,20 @@
 # Sirious-Notification
 ###UPDATE:
-Currently a better and user friendly version is under development.The name of the project will be changed.
+Currently a better user friendly version is under development.The name of the project will be changed.
   1. The newer version will have voice commands
   2. Search feature - clipboard search feature also included
-  3. Personal Assistant - community driven entity and intents using Supervised ML.  
+  3. Personal Assistant - community driven entity and intents using supervised ML.  
   4. It wont be using the Dbus notification.
   5. Cinnamon bugs will be fixed.
 
 Future version: 
 ![alt tag](https://docs.google.com/uc?authuser=0&id=0B_MVpqqghjpia0t4WGJaOWxrUnM&export=download)
+The above pic is only a representation of currently developing app.The actual app can be different.
+
 ###Sirious-Notification-Daemon
 Sirious is a linux application that lets you search for any selected content (primary clipboard content) on DuckDuckGo and gives its best result as a notification.
 Sirious can be given as keyboard shortcut and thus it becomes easier to search content.
-Sirious is still under-development.
+
 
 ###How it works! 
 1. Once installed, Sirious will be a terminal command

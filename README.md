@@ -1,4 +1,4 @@
-# Sirious-Notification
+##NO MORE ACTIVE DEVELOPMENT
 ###UPDATE: Newer version available at https://harishanand95.github.io/Bear
 The newer and improved version of Sirious notification is available at https://harishanand95.github.io/Bear. 
   1. The newer version has voice commands
